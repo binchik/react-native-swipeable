@@ -2,7 +2,7 @@
   "name": "react-native-swipeable-row",
   "version": "0.8.1",
   "description": "A powerful React Native swipe component based on @jshanson7 package",
-  "main": "lib/index.js",
+  "main": "src/index.js",
   "scripts": {
     "build": "make build",
     "lint": "make lint"
