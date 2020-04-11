@@ -82,6 +82,34 @@ class MyListItem extends Component {
 }
 ```
 
+#### move()
+
+Imperatively move swipeable component
+
+```javascript
+class MyListItem extends Component {
+
+  swipeable = null;
+
+  handleUserBeganScrollingParentView() {
+  	// Move swipeable component outside of the view
+    this.swipeable.move(Animated.timing, {
+          toValue: { x: Dimensions.get('window').width, y: 0 },
+          duration: ANIMATION_DURATION,
+          easing: Easing.elastic(0.5)
+        });
+  }
+
+  render() {
+    return (
+      <Swipeable onRef={ref => this.swipeable = ref} rightButtons={rightButtons}>
+        <Text>My swipeable content</Text>
+      </Swipeable>
+    );
+  }
+}
+```
+
 #### bounceRight(onDone)
 
 Bounce the right component to alert swiping is possible. `onDone` is an optional callback.
