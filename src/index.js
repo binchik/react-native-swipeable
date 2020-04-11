@@ -195,10 +195,20 @@ export default class Swipeable extends PureComponent {
     animationConfig = this.props.swipeReleaseAnimationConfig,
     onDone
   ) => {
+    move(animationFn, animationConfig, onDone)
+  };
+
+  move = (
+    animationFn = this.props.swipeReleaseAnimationFn,
+    animationConfig = this.props.swipeReleaseAnimationConfig,
+    onDone,
+    destX = 0,
+    destY = 0
+  ) => {
     const {pan} = this.state;
 
     this.setState({
-      lastOffset: {x: 0, y: 0},
+      lastOffset: {x: destX, y: destY},
       leftActionActivated: false,
       leftButtonsActivated: false,
       leftButtonsOpen: false,
