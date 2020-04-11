@@ -172,15 +172,13 @@ export default class Swipeable extends PureComponent {
     rightButtonsActivated: false,
     rightButtonsOpen: false
   };
-
-  componentWillMount() {
+  
+  componentDidMount() {
     const {onPanAnimatedValueRef, onRef} = this.props;
 
     onRef(this);
     onPanAnimatedValueRef(this.state.pan);
-  }
 
-  componentDidMount() {
     if (this.props.bounceOnMount) {
       setTimeout(this._bounceOnMount, 700);
     }
@@ -190,7 +188,7 @@ export default class Swipeable extends PureComponent {
     this._unmounted = true;
   }
 
-  recenter = (
+  move = (
     animationFn = this.props.swipeReleaseAnimationFn,
     animationConfig = this.props.swipeReleaseAnimationConfig,
     onDone
@@ -210,6 +208,14 @@ export default class Swipeable extends PureComponent {
     pan.flattenOffset();
 
     animationFn(pan, animationConfig).start(onDone);
+  };
+
+  recenter = (
+    animationFn = this.props.swipeReleaseAnimationFn,
+    animationConfig = this.props.swipeReleaseAnimationConfig,
+    onDone
+  ) => {
+    this.move(animationFn, animationConfig, onDone)
   };
 
   _bounceOnMount = () => {
